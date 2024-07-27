@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <UserSecretsId>aspnet-BookStore.API-C0C465D7-A73F-49FD-A9E2-2AB30E592023</UserSecretsId>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
