@@ -1,0 +1,40 @@
+name: Build and Request Approval
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build_job:
+    runs-on: ubuntu-latest
+    name: Build Job
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+      - name: Set up .NET Core
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: '6.0.x'
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
+      - name: Publish
+        run: dotnet publish --configuration Release --output ./output --no-restore
+
+  request_approval:
+    needs: build_job
+    runs-on: ubuntu-latest
+    name: Request Approval
+    steps:
+      - name: Request Approval
+        run: echo "Waiting for approval..."
+        timeout-minutes: 1440 # 24 hours
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        continue-on-error: true
