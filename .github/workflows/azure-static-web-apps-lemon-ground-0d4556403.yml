@@ -19,8 +19,7 @@ jobs:
         with:
           submodules: true
       - name: my first line of scriptt
-        run: |
-              dotnet --info 
+        run: dotnet --info 
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v2
         with:
