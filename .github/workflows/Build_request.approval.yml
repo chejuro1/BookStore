@@ -26,15 +26,3 @@ jobs:
         run: dotnet build --configuration Release --no-restore
       - name: Publish
         run: dotnet publish --configuration Release --output ./output --no-restore
-
-  request_approval:
-    needs: build_job
-    runs-on: ubuntu-latest
-    name: Request Approval
-    steps:
-      - name: Request Approval
-        run: echo "Waiting for approval..."
-        timeout-minutes: 1440 # 24 hours
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        continue-on-error: true

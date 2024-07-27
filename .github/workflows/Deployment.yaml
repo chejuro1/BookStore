@@ -11,6 +11,7 @@ jobs:
     if: github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     name: Deploy Job
+    environment: dev
     steps:
       - uses: actions/checkout@v2
         with:
